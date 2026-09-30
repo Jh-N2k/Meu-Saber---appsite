@@ -1,0 +1,4603 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MeuSaber</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    
+    <!-- ==============================
+     TELAS DE ENTRADA
+================================= -->
+
+<div id="authScreen">
+
+    <!-- LADO AZUL -->
+    <div class="auth-visual">
+
+        <div class="auth-decoration">
+            <span>△</span>
+            <span>◯</span>
+            <span>✎</span>
+            <span>□</span>
+            <span>☆</span>
+            <span>∑</span>
+        </div>
+
+        <div class="auth-brand">
+
+            <div class="auth-logo">
+                📚
+            </div>
+
+            <div class="auth-logo-name">
+                Meu<span>Saber</span>
+            </div>
+
+        </div>
+
+        <div class="auth-books"></div>
+
+        <div class="auth-side-note">
+            Aprender ficou mais simples.<br>
+            Acompanhe seus estudos pelo MeuSaber.
+        </div>
+
+    </div>
+
+
+    <!-- LADO DO FORMULÁRIO -->
+    <div class="auth-form-side">
+
+        <div class="auth-card">
+
+            <!-- TELA 1 -->
+            <div id="authWelcome" class="auth-step active">
+
+                <h1 class="auth-title">
+                    Bem-vindo(a) de volta!
+                </h1>
+
+                <p class="auth-subtitle">
+                    Escolha como deseja acessar a plataforma.
+                </p>
+
+
+                <div class="auth-role-list">
+
+                    <button
+                        class="auth-role"
+                        type="button"
+                        onclick="selecionarPerfil('estudante')"
+                    >
+                        <span>Estudante</span>
+                        <span class="role-arrow">⊙</span>
+                    </button>
+
+
+                    <button
+                        class="auth-role"
+                        type="button"
+                        onclick="mostrarPerfilIndisponivel('Servidor')"
+                    >
+                        <span>Servidor</span>
+                        <span class="role-arrow">⊙</span>
+                    </button>
+
+
+                    <button
+                        class="auth-role"
+                        type="button"
+                        onclick="mostrarPerfilIndisponivel('Responsável')"
+                    >
+                        <span>Responsável</span>
+                        <span class="role-arrow">⊙</span>
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="roleMessage"
+                    class="auth-role-message"
+                ></div>
+
+            </div>
+
+
+            <!-- TELA 2 -->
+            <div id="authStudent" class="auth-step">
+
+                <h1 class="auth-title">
+                    Estudante
+                </h1>
+
+                <p class="auth-subtitle">
+                    Preencha seus dados para acessar sua conta.
+                </p>
+
+
+                <form id="studentLoginForm">
+
+                    <div class="auth-field">
+
+                        <label for="studentRA">
+                            RA
+                        </label>
+
+                        <input
+                            id="studentRA"
+                            type="text"
+                            placeholder="Digite seu RA"
+                            autocomplete="username"
+                        >
+
+                    </div>
+
+
+                    <div class="auth-field">
+
+                        <label for="studentPassword">
+                            Senha
+                        </label>
+
+                        <input
+                            id="studentPassword"
+                            type="password"
+                            placeholder="Digite sua senha"
+                            autocomplete="current-password"
+                        >
+
+                    </div>
+
+
+                    <div class="auth-row">
+
+                        <label class="auth-check">
+
+                            <input
+                                id="rememberStudent"
+                                type="checkbox"
+                            >
+
+                            <span>
+                                Lembrar-me
+                            </span>
+
+                        </label>
+
+
+                        <a
+                            href="#"
+                            class="auth-link"
+                            onclick="esqueciSenha(event)"
+                        >
+                            Esqueci minha senha
+                        </a>
+
+                    </div>
+
+
+                    <div
+                        id="loginError"
+                        class="auth-error"
+                    >
+                        Preencha o RA e a senha para continuar.
+                    </div>
+
+
+                    <div class="auth-actions">
+
+                        <button
+                            class="auth-btn"
+                            type="button"
+                            onclick="voltarPerfil()"
+                        >
+                            Voltar
+                        </button>
+
+
+                        <button
+                            class="auth-btn primary"
+                            type="submit"
+                        >
+                            Entrar
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- MENU LATERAL DESKTOP -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <img src="annagaga.png">
+        </div>
+
+        <nav>
+            <button class="nav-btn active" data-page="inicio">
+                🏠 Início
+            </button>
+
+            <button class="nav-btn" data-page="atividades">
+                📚 Atividades
+            </button>
+
+            <button class="nav-btn" data-page="materias">
+                📖 Minhas matérias
+            </button>
+
+            <button class="nav-btn" data-page="cronograma">
+                📅 Cronograma
+            </button>
+
+            <button class="nav-btn" data-page="desempenho">
+                📊 Desempenho
+            </button>
+        <nav class="sidebar-nav">
+
+
+    <button class="nav-btn" data-page="provas">
+        <span class="nav-icon">▤</span>
+        <span>Provas</span>
+    </button>
+
+    <button class="nav-btn" data-page="material-digital">
+        <span class="nav-icon">▧</span>
+        <span>Material Digital</span>
+    </button>
+
+    <button class="nav-btn" data-page="plataformas">
+        <span class="nav-icon">📣</span>
+        <span>Plataformas</span>
+    </button>
+
+    <button class="nav-btn" data-page="frequencia">
+        <span class="nav-icon">▣</span>
+        <span>Frequência</span>
+    </button>
+
+    <button class="nav-btn" data-page="boletim">
+        <span class="nav-icon">▰</span>
+        <span>Boletim</span>
+    </button>
+
+    <button class="nav-btn" data-page="agenda">
+        <span class="nav-icon">▦</span>
+        <span>Agenda</span>
+    </button>
+
+    <button class="nav-btn" data-page="mensagens">
+        <span class="nav-icon">💬</span>
+        <span>Mensagens</span>
+    </button>
+
+    <button class="nav-btn" data-page="pesquisas">
+        <span class="nav-icon">⌕</span>
+        <span>Pesquisas</span>
+    </button>
+
+    <button class="nav-btn" data-page="meus-meritos">
+        <span class="nav-icon">🏆</span>
+        <span>Meus Méritos</span>
+    </button>
+
+    <button class="nav-btn" data-page="perfil">
+        <span class="nav-icon">◉</span>
+        <span>Perfil</span>
+    </button>
+
+    <button class="nav-btn" data-page="configuracoes">
+        <span class="nav-icon">⚙</span>
+        <span>Configurações</span>
+    </button>
+
+    <div class="sidebar-spacer"></div>
+
+    <button class="nav-btn logout-btn" id="logoutBtn">
+        <span class="nav-icon">◧</span>
+        <span>Sair da Conta</span>
+    </button>
+
+</nav>
+
+        <div class="profile">
+            <div class="avatar">H</div>
+
+            <div>
+                <strong>Olá, Higor!</strong>
+                <small>Aluno</small>
+            </div>
+        </div>
+
+    </aside>
+
+
+    <!-- CONTEÚDO -->
+    <main class="content">
+
+<!-- =========================
+     TELA DE CONFIGURAÇÕES
+========================= -->
+<section id="configuracoes" class="page">
+
+    <div class="config-header">
+        <div>
+            <span class="config-label">PREFERÊNCIAS</span>
+            <h1>Configurações</h1>
+            <p>Personalize sua experiência no MeuSaber.</p>
+        </div>
+    </div>
+
+
+    <div class="config-layout">
+
+        <!-- MENU LATERAL -->
+        <div class="config-menu">
+
+            <button
+                class="config-menu-item ativo"
+                onclick="selecionarConfig('geral', this)">
+                <span>⚙️</span>
+                <div>
+                    <strong>Geral</strong>
+                    <small>Preferências básicas</small>
+                </div>
+            </button>
+
+            <button
+                class="config-menu-item"
+                onclick="selecionarConfig('notificacoes', this)">
+                <span>🔔</span>
+                <div>
+                    <strong>Notificações</strong>
+                    <small>Alertas e avisos</small>
+                </div>
+            </button>
+
+            <button
+                class="config-menu-item"
+                onclick="selecionarConfig('aparencia', this)">
+                <span>🎨</span>
+                <div>
+                    <strong>Aparência</strong>
+                    <small>Tema e visual</small>
+                </div>
+            </button>
+
+            <button
+                class="config-menu-item"
+                onclick="selecionarConfig('privacidade', this)">
+                <span>🔒</span>
+                <div>
+                    <strong>Privacidade</strong>
+                    <small>Segurança da conta</small>
+                </div>
+            </button>
+
+            <button
+                class="config-menu-item"
+                onclick="selecionarConfig('acessibilidade', this)">
+                <span>♿</span>
+                <div>
+                    <strong>Acessibilidade</strong>
+                    <small>Facilidades de acesso</small>
+                </div>
+            </button>
+
+        </div>
+
+
+        <!-- CONTEÚDO -->
+        <div class="config-conteudo">
+
+
+            <!-- =====================
+                 GERAL
+            ====================== -->
+            <div
+                id="config-geral"
+                class="config-secao ativa">
+
+                <div class="config-secao-header">
+                    <div>
+                        <h2>Configurações gerais</h2>
+                        <p>Controle as principais preferências da sua conta.</p>
+                    </div>
+                    <span>⚙️</span>
+                </div>
+
+
+                <div class="config-opcao">
+
+                    <div class="config-opcao-icon">
+                        🌐
+                    </div>
+
+                    <div class="config-opcao-texto">
+                        <strong>Idioma</strong>
+                        <span>Idioma utilizado no MeuSaber.</span>
+                    </div>
+
+                    <select class="config-select">
+                        <option>Português (Brasil)</option>
+                        <option>English</option>
+                        <option>Español</option>
+                    </select>
+
+                </div>
+
+
+                <div class="config-opcao">
+
+                    <div class="config-opcao-icon">
+                        🗓️
+                    </div>
+
+                    <div class="config-opcao-texto">
+                        <strong>Formato de data</strong>
+                        <span>Escolha como as datas serão exibidas.</span>
+                    </div>
+
+                    <select class="config-select">
+                        <option>DD/MM/AAAA</option>
+                        <option>MM/DD/AAAA</option>
+                    </select>
+
+                </div>
+
+
+                <div class="config-opcao">
+
+                    <div class="config-opcao-icon">
+                        🏫
+                    </div>
+
+                    <div class="config-opcao-texto">
+                        <strong>Instituição</strong>
+                        <span>Instituição vinculada à sua conta.</span>
+                    </div>
+
+                    <strong class="config-valor">
+                        SENAI
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================
+                 NOTIFICAÇÕES
+            ====================== -->
+            <div
+                id="config-notificacoes"
+                class="config-secao">
+
+                <div class="config-secao-header">
+                    <div>
+                        <h2>Notificações</h2>
+                        <p>Escolha quais avisos você deseja receber.</p>
+                    </div>
+                    <span>🔔</span>
+                </div>
+
+
+                <div class="config-opcao">
+
+                    <div class="config-opcao-icon">
+                        📚
+                    </div>
+
+                    <div class="config-opcao-texto">
+                        <strong>Novas atividades</strong>
+                        <span>
+                            Receber aviso quando uma atividade for adicionada.
+                        </span>
+                    </div>
+
+                    <label class="config-switch">
+                        <input
+                            type="checkbox"
+                            checked
+                            onchange="alterarConfiguracao(this, 'Novas atividades')">
+                        <span></span>
+                    </label>
+
+                </div>
+
+
+                <div class="config-opcao">
+
+                    <div class="config-opcao-icon">
+                        📝
+                    </div>
+
+                    <div class="config-opcao-texto">
+                        <strong>Provas</strong>
+                        <span>
+                            Receber lembretes antes das provas.
+                        </span>
+                    </div>
+
+                    <label class="config-switch">
+                        <input
+                            type="checkbox"
+                            checked
+                            onchange="alterarConfiguracao(this, 'Lembretes de provas')">
+                        <span></span>
+                    </label>
+
+                </div>
+
+
+                <div class="config-opcao">
+
+                    <div class="config-opcao-icon">
+                        📊
+                    </div>
+
+                    <div class="config-opcao-texto">
+                        <strong>Notas e resultados</strong>
+                        <span>
+                            Avisar quando uma nova nota estiver disponível.
+                        </span>
+                    </div>
+
+                    <label class="config-switch">
+                        <input
+                            type="checkbox"
+                            checked
+                            onchange="alterarConfiguracao(this, 'Notas e resultados')">
+                        <span></span>
+                    </label>
+
+                </div>
+
+
+                <div class="config-opcao">
+
+                    <div class="config-opcao-icon">
+                        📢
+                    </div>
+
+                    <div class="config-opcao-texto">
+                        <strong>Comunicados da escola</strong>
+                        <span>
+                            Receber avisos e comunicados importantes.
+                        </span>
+                    </div>
+
+                    <label class="config-switch">
+                        <input
+                            type="checkbox"
+                            checked
+                            onchange="alterarConfiguracao(this, 'Comunicados da escola')">
+                        <span></span>
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================
+                 APARÊNCIA
+            ====================== -->
+            <div
+                id="config-aparencia"
+                class="config-secao">
+
+                <div class="config-secao-header">
+                    <div>
+                        <h2>Aparência</h2>
+                        <p>Personalize a aparência do MeuSaber.</p>
+                    </div>
+                    <span>🎨</span>
+                </div>
+
+
+                <div class="config-opcao">
+
+                    <div class="config-opcao-icon">
+                        ☀️
+                    </div>
+
+                    <div class="config-opcao-texto">
+                        <strong>Tema</strong>
+                        <span>Escolha o tema da plataforma.</span>
+                    </div>
+
+                    <select
+                        class="config-select"
+                        onchange="alterarTema(this.value)">
+                        <option value="claro">Claro</option>
+                        <option value="escuro">Escuro</option>
+                        <option value="automatico">Automático</option>
+                    </select>
+
+                </div>
+
+
+                <div class="config-opcao">
+
+                    <div class="config-opcao-icon">
+                        🔤
+                    </div>
+
+                    <div class="config-opcao-texto">
+                        <strong>Tamanho da fonte</strong>
+                        <span>Ajuste o tamanho dos textos.</span>
+                    </div>
+
+                    <select
+                        class="config-select"
+                        onchange="alterarFonte(this.value)">
+                        <option value="normal">Normal</option>
+                        <option value="grande">Grande</option>
+                        <option value="muito-grande">Muito grande</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================
+                 PRIVACIDADE
+            ====================== -->
+            <div
+                id="config-privacidade"
+                class="config-secao">
+
+                <div class="config-secao-header">
+                    <div>
+                        <h2>Privacidade e segurança</h2>
+                        <p>Proteja sua conta e seus dados.</p>
+                    </div>
+                    <span>🔒</span>
+                </div>
+
+
+                <div class="config-opcao">
+
+                    <div class="config-opcao-icon">
+                        🔑
+                    </div>
+
+                    <div class="config-opcao-texto">
+                        <strong>Senha</strong>
+                        <span>
+                            Altere a senha utilizada para entrar na conta.
+                        </span>
+                    </div>
+
+                    <button
+                        class="config-acao"
+                        onclick="alterarSenhaConfig()">
+                        Alterar
+                    </button>
+
+                </div>
+
+
+                <div class="config-opcao">
+
+                    <div class="config-opcao-icon">
+                        📱
+                    </div>
+
+                    <div class="config-opcao-texto">
+                        <strong>Sessões ativas</strong>
+                        <span>
+                            Consulte os dispositivos conectados à sua conta.
+                        </span>
+                    </div>
+
+                    <button
+                        class="config-acao"
+                        onclick="verSessoes()">
+                        Ver sessões
+                    </button>
+
+                </div>
+
+
+                <div class="config-opcao config-perigo">
+
+                    <div class="config-opcao-icon">
+                        🚪
+                    </div>
+
+                    <div class="config-opcao-texto">
+                        <strong>Sair da conta</strong>
+                        <span>
+                            Encerrar sua sessão neste dispositivo.
+                        </span>
+                    </div>
+
+                    <button
+                        class="config-acao perigo"
+                        onclick="sairDaConta()">
+                        Sair
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================
+                 ACESSIBILIDADE
+            ====================== -->
+            <div
+                id="config-acessibilidade"
+                class="config-secao">
+
+                <div class="config-secao-header">
+                    <div>
+                        <h2>Acessibilidade</h2>
+                        <p>Configure recursos para facilitar sua navegação.</p>
+                    </div>
+                    <span>♿</span>
+                </div>
+
+
+                <div class="config-opcao">
+
+                    <div class="config-opcao-icon">
+                        🔎
+                    </div>
+
+                    <div class="config-opcao-texto">
+                        <strong>Texto ampliado</strong>
+                        <span>
+                            Aumentar o tamanho dos textos da plataforma.
+                        </span>
+                    </div>
+
+                    <label class="config-switch">
+                        <input
+                            type="checkbox"
+                            onchange="alterarConfiguracao(this, 'Texto ampliado')">
+                        <span></span>
+                    </label>
+
+                </div>
+
+
+                <div class="config-opcao">
+
+                    <div class="config-opcao-icon">
+                        🎨
+                    </div>
+
+                    <div class="config-opcao-texto">
+                        <strong>Alto contraste</strong>
+                        <span>
+                            Aumentar o contraste dos elementos da interface.
+                        </span>
+                    </div>
+
+                    <label class="config-switch">
+                        <input
+                            type="checkbox"
+                            onchange="alterarConfiguracao(this, 'Alto contraste')">
+                        <span></span>
+                    </label>
+
+                </div>
+
+
+                <div class="config-opcao">
+
+                    <div class="config-opcao-icon">
+                        ⌨️
+                    </div>
+
+                    <div class="config-opcao-texto">
+                        <strong>Atalhos de teclado</strong>
+                        <span>
+                            Ativar navegação utilizando o teclado.
+                        </span>
+                    </div>
+
+                    <label class="config-switch">
+                        <input
+                            type="checkbox"
+                            checked
+                            onchange="alterarConfiguracao(this, 'Atalhos de teclado')">
+                        <span></span>
+                    </label>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+        <!-- =========================
+     TELA DE PERFIL
+========================= -->
+<section id="perfil" class="page">
+
+    <div class="perfil-header">
+        <div>
+            <span class="perfil-label">MINHA CONTA</span>
+            <h1>Meu Perfil</h1>
+            <p>Visualize e gerencie suas informações pessoais.</p>
+        </div>
+
+        <button class="perfil-editar-btn" onclick="editarPerfil()">
+            ✏️ Editar perfil
+        </button>
+    </div>
+
+
+    <!-- CARD PRINCIPAL -->
+    <div class="perfil-principal">
+
+        <div class="perfil-avatar">
+            <span>H</span>
+        </div>
+
+        <div class="perfil-identidade">
+
+            <span class="perfil-status">
+                ● Aluno ativo
+            </span>
+
+            <h2>Higor Rodrigues Joseppin</h2>
+
+            <p>Aluno • 3º Ano do Ensino Médio</p>
+
+            <div class="perfil-info-rapida">
+                <span>🎓 Desenvolvimento de Sistemas</span>
+                <span>📍 São Paulo - SP</span>
+                <span>🆔 RA: 20260001</span>
+            </div>
+
+        </div>
+
+        <div class="perfil-membro">
+            <span>Aluno desde</span>
+            <strong>2024</strong>
+        </div>
+
+    </div>
+
+
+    <!-- ESTATÍSTICAS -->
+    <div class="perfil-estatisticas">
+
+        <div class="perfil-stat">
+
+            <div class="perfil-stat-icon azul">
+                📚
+            </div>
+
+            <div>
+                <strong>87%</strong>
+                <span>Frequência</span>
+            </div>
+
+        </div>
+
+
+        <div class="perfil-stat">
+
+            <div class="perfil-stat-icon verde">
+                ⭐
+            </div>
+
+            <div>
+                <strong>8,7</strong>
+                <span>Média geral</span>
+            </div>
+
+        </div>
+
+
+        <div class="perfil-stat">
+
+            <div class="perfil-stat-icon roxo">
+                📝
+            </div>
+
+            <div>
+                <strong>42</strong>
+                <span>Atividades concluídas</span>
+            </div>
+
+        </div>
+
+
+        <div class="perfil-stat">
+
+            <div class="perfil-stat-icon laranja">
+                🏆
+            </div>
+
+            <div>
+                <strong>12</strong>
+                <span>Conquistas</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CONTEÚDO -->
+    <div class="perfil-grid">
+
+        <!-- DADOS PESSOAIS -->
+        <div class="perfil-box">
+
+            <div class="perfil-box-header">
+
+                <div>
+                    <h2>Dados pessoais</h2>
+                    <p>Informações básicas da sua conta.</p>
+                </div>
+
+                <button onclick="editarDados('Dados pessoais')">
+                    ✏️
+                </button>
+
+            </div>
+
+
+            <div class="perfil-dados">
+
+                <div class="perfil-dado">
+                    <span>Nome completo</span>
+                    <strong>Higor Rodrigues Joseppin</strong>
+                </div>
+
+                <div class="perfil-dado">
+                    <span>Data de nascimento</span>
+                    <strong>15/04/2009</strong>
+                </div>
+
+                <div class="perfil-dado">
+                    <span>E-mail</span>
+                    <strong>higorjoseppin@gmail.com</strong>
+                </div>
+
+                <div class="perfil-dado">
+                    <span>Telefone</span>
+                    <strong>(11) 99246-4072</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DADOS ESCOLARES -->
+        <div class="perfil-box">
+
+            <div class="perfil-box-header">
+
+                <div>
+                    <h2>Dados escolares</h2>
+                    <p>Informações relacionadas à sua vida escolar.</p>
+                </div>
+
+                <button onclick="editarDados('Dados escolares')">
+                    ✏️
+                </button>
+
+            </div>
+
+
+            <div class="perfil-dados">
+
+                <div class="perfil-dado">
+                    <span>RA</span>
+                    <strong>20260001</strong>
+                </div>
+
+                <div class="perfil-dado">
+                    <span>Série</span>
+                    <strong>3º Ano do Ensino Médio</strong>
+                </div>
+
+                <div class="perfil-dado">
+                    <span>Curso</span>
+                    <strong>Desenvolvimento de Sistemas</strong>
+                </div>
+
+                <div class="perfil-dado">
+                    <span>Turno</span>
+                    <strong>Manhã</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DESEMPENHO -->
+        <div class="perfil-box">
+
+            <div class="perfil-box-header">
+
+                <div>
+                    <h2>Meu desempenho</h2>
+                    <p>Resumo do seu desempenho acadêmico.</p>
+                </div>
+
+                <button onclick="abrirPagina('desempenho')">
+                    Ver →
+                </button>
+
+            </div>
+
+
+            <div class="perfil-desempenho">
+
+                <div class="perfil-progresso">
+
+                    <div
+                        class="perfil-circulo"
+                        style="--progresso: 87%;">
+                        <strong>87%</strong>
+                        <span>Desempenho</span>
+                    </div>
+
+                </div>
+
+
+                <div class="perfil-desempenho-lista">
+
+                    <div>
+                        <span>Atividades</span>
+                        <strong>92%</strong>
+                    </div>
+
+                    <div>
+                        <span>Provas</span>
+                        <strong>87%</strong>
+                    </div>
+
+                    <div>
+                        <span>Frequência</span>
+                        <strong>87%</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CONQUISTAS -->
+        <div class="perfil-box">
+
+            <div class="perfil-box-header">
+
+                <div>
+                    <h2>Minhas conquistas</h2>
+                    <p>Algumas das suas conquistas recentes.</p>
+                </div>
+
+                <button onclick="abrirPagina('meus-meritos')">
+                    Ver todas →
+                </button>
+
+            </div>
+
+
+            <div class="perfil-conquistas">
+
+                <div class="perfil-conquista">
+                    <span>🏆</span>
+                    <strong>Aluno destaque</strong>
+                    <small>Melhor desempenho</small>
+                </div>
+
+                <div class="perfil-conquista">
+                    <span>🔥</span>
+                    <strong>Foco total</strong>
+                    <small>10 atividades seguidas</small>
+                </div>
+
+                <div class="perfil-conquista">
+                    <span>📚</span>
+                    <strong>Estudioso</strong>
+                    <small>50 horas de estudo</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SEGURANÇA -->
+    <div class="perfil-seguranca">
+
+        <div>
+            <span class="perfil-seguranca-icon">🔒</span>
+
+            <div>
+                <h3>Segurança da conta</h3>
+                <p>
+                    Mantenha seus dados de acesso protegidos.
+                </p>
+            </div>
+        </div>
+
+        <button onclick="alterarSenha()">
+            Alterar senha
+        </button>
+
+    </div>
+
+</section>
+
+        <!-- =========================
+     TELA DE PLATAFORMAS
+========================= -->
+<section id="plataformas" class="page">
+
+    <div class="plataformas-header">
+        <div>
+            <span class="plataformas-label">RECURSOS DIGITAIS</span>
+            <h1>Plataformas</h1>
+            <p>Acesse rapidamente as plataformas utilizadas pela escola.</p>
+        </div>
+
+        <button class="plataformas-btn" onclick="mostrarTodasPlataformas()">
+            🔗 Ver todas
+        </button>
+    </div>
+
+    <!-- RESUMO -->
+    <div class="plataformas-resumo">
+
+        <div class="plataforma-resumo-card">
+            <div class="plataforma-resumo-icon">🌐</div>
+            <div>
+                <strong>6</strong>
+                <span>Plataformas disponíveis</span>
+            </div>
+        </div>
+
+        <div class="plataforma-resumo-card">
+            <div class="plataforma-resumo-icon">📚</div>
+            <div>
+                <strong>4</strong>
+                <span>Em uso</span>
+            </div>
+        </div>
+
+        <div class="plataforma-resumo-card">
+            <div class="plataforma-resumo-icon">📝</div>
+            <div>
+                <strong>12</strong>
+                <span>Atividades online</span>
+            </div>
+        </div>
+
+        <div class="plataforma-resumo-card">
+            <div class="plataforma-resumo-icon">✅</div>
+            <div>
+                <strong>87%</strong>
+                <span>Atividades concluídas</span>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- PLATAFORMA EM DESTAQUE -->
+    <div class="plataforma-destaque">
+
+        <div class="plataforma-destaque-logo">
+            📖
+        </div>
+
+        <div class="plataforma-destaque-info">
+            <span>PLATAFORMA EM DESTAQUE</span>
+            <h2>Portal do Aluno</h2>
+            <p>
+                Consulte conteúdos, atividades, comunicados e materiais
+                disponibilizados pelos professores.
+            </p>
+
+            <div class="plataforma-destaque-status">
+                <span>● Disponível</span>
+                <span>Último acesso: Hoje</span>
+            </div>
+        </div>
+
+        <button
+            class="plataforma-acessar destaque"
+            onclick="acessarPlataforma('Portal do Aluno')">
+            Acessar plataforma →
+        </button>
+
+    </div>
+
+
+    <!-- TÍTULO -->
+    <div class="plataformas-titulo">
+        <div>
+            <h2>Minhas plataformas</h2>
+            <p>Ferramentas disponíveis para seus estudos.</p>
+        </div>
+    </div>
+
+
+    <!-- CARDS -->
+    <div class="plataformas-grid">
+
+        <!-- Plataforma 1 -->
+        <div class="plataforma-card">
+
+            <div class="plataforma-card-topo">
+                <div class="plataforma-logo azul">
+                    📚
+                </div>
+
+                <span class="plataforma-online">
+                    ● Online
+                </span>
+            </div>
+
+            <h3>Portal do Aluno</h3>
+
+            <p>
+                Consulte notas, frequência, atividades e informações
+                acadêmicas.
+            </p>
+
+            <div class="plataforma-card-info">
+                <span>📌 Acadêmico</span>
+                <span>🕐 Acessado hoje</span>
+            </div>
+
+            <button
+                class="plataforma-card-btn"
+                onclick="acessarPlataforma('Portal do Aluno')">
+                Acessar
+            </button>
+
+        </div>
+
+
+        <!-- Plataforma 2 -->
+        <div class="plataforma-card">
+
+            <div class="plataforma-card-topo">
+                <div class="plataforma-logo verde">
+                    💻
+                </div>
+
+                <span class="plataforma-online">
+                    ● Online
+                </span>
+            </div>
+
+            <h3>Google Sala de Aula</h3>
+
+            <p>
+                Acesse aulas, trabalhos, materiais e atividades enviadas
+                pelos professores.
+            </p>
+
+            <div class="plataforma-card-info">
+                <span>📌 Estudos</span>
+                <span>📝 4 atividades</span>
+            </div>
+
+            <button
+                class="plataforma-card-btn"
+                onclick="acessarPlataforma('Google Sala de Aula')">
+                Acessar
+            </button>
+
+        </div>
+
+
+        <!-- Plataforma 3 -->
+        <div class="plataforma-card">
+
+            <div class="plataforma-card-topo">
+                <div class="plataforma-logo roxo">
+                    🧠
+                </div>
+
+                <span class="plataforma-online">
+                    ● Online
+                </span>
+            </div>
+
+            <h3>Biblioteca Digital</h3>
+
+            <p>
+                Encontre livros, apostilas, artigos e outros materiais
+                para complementar seus estudos.
+            </p>
+
+            <div class="plataforma-card-info">
+                <span>📌 Biblioteca</span>
+                <span>📖 120 materiais</span>
+            </div>
+
+            <button
+                class="plataforma-card-btn"
+                onclick="acessarPlataforma('Biblioteca Digital')">
+                Acessar
+            </button>
+
+        </div>
+
+
+        <!-- Plataforma 4 -->
+        <div class="plataforma-card">
+
+            <div class="plataforma-card-topo">
+                <div class="plataforma-logo laranja">
+                    🎯
+                </div>
+
+                <span class="plataforma-online">
+                    ● Online
+                </span>
+            </div>
+
+            <h3>Portal de Exercícios</h3>
+
+            <p>
+                Resolva exercícios e acompanhe seu desempenho nas
+                diferentes disciplinas.
+            </p>
+
+            <div class="plataforma-card-info">
+                <span>📌 Exercícios</span>
+                <span>📝 8 pendentes</span>
+            </div>
+
+            <button
+                class="plataforma-card-btn"
+                onclick="acessarPlataforma('Portal de Exercícios')">
+                Acessar
+            </button>
+
+        </div>
+
+
+        <!-- Plataforma 5 -->
+        <div class="plataforma-card">
+
+            <div class="plataforma-card-topo">
+                <div class="plataforma-logo vermelho">
+                    🎥
+                </div>
+
+                <span class="plataforma-online">
+                    ● Online
+                </span>
+            </div>
+
+            <h3>Videoaulas</h3>
+
+            <p>
+                Assista às videoaulas recomendadas pelos professores para
+                reforçar os conteúdos.
+            </p>
+
+            <div class="plataforma-card-info">
+                <span>📌 Videoaulas</span>
+                <span>🎬 35 vídeos</span>
+            </div>
+
+            <button
+                class="plataforma-card-btn"
+                onclick="acessarPlataforma('Videoaulas')">
+                Acessar
+            </button>
+
+        </div>
+
+
+        <!-- Plataforma 6 -->
+        <div class="plataforma-card">
+
+            <div class="plataforma-card-topo">
+                <div class="plataforma-logo ciano">
+                    💬
+                </div>
+
+                <span class="plataforma-online">
+                    ● Online
+                </span>
+            </div>
+
+            <h3>Comunicação Escolar</h3>
+
+            <p>
+                Acompanhe comunicados e informações importantes enviadas
+                pela escola.
+            </p>
+
+            <div class="plataforma-card-info">
+                <span>📌 Comunicação</span>
+                <span>💬 2 mensagens</span>
+            </div>
+
+            <button
+                class="plataforma-card-btn"
+                onclick="acessarPlataforma('Comunicação Escolar')">
+                Acessar
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ATIVIDADES RECENTES -->
+    <div class="plataformas-atividades">
+
+        <div class="plataformas-titulo">
+            <div>
+                <h2>Atividades recentes</h2>
+                <p>Últimas atividades disponíveis nas plataformas.</p>
+            </div>
+        </div>
+
+        <div class="atividade-plataforma">
+
+            <div class="atividade-plataforma-icon">
+                📝
+            </div>
+
+            <div class="atividade-plataforma-info">
+                <strong>Lista de exercícios — Matemática</strong>
+                <span>Portal de Exercícios • Entrega até 02/10</span>
+            </div>
+
+            <span class="atividade-pendente">
+                Pendente
+            </span>
+
+        </div>
+
+
+        <div class="atividade-plataforma">
+
+            <div class="atividade-plataforma-icon">
+                📖
+            </div>
+
+            <div class="atividade-plataforma-info">
+                <strong>Leitura obrigatória — Português</strong>
+                <span>Biblioteca Digital • Entrega até 05/10</span>
+            </div>
+
+            <span class="atividade-pendente">
+                Pendente
+            </span>
+
+        </div>
+
+
+        <div class="atividade-plataforma">
+
+            <div class="atividade-plataforma-icon">
+                🎥
+            </div>
+
+            <div class="atividade-plataforma-info">
+                <strong>Videoaula — Sistema Respiratório</strong>
+                <span>Videoaulas • Concluída</span>
+            </div>
+
+            <span class="atividade-concluida">
+                Concluída
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     TELA DE PROVAS
+========================= -->
+<section id="provas" class="page">
+
+    <div class="provas-header">
+        <div>
+            <span class="provas-label">AVALIAÇÕES</span>
+            <h1>Provas</h1>
+            <p>Confira suas próximas avaliações e organize seus estudos.</p>
+        </div>
+
+        <button class="provas-btn-calendario" onclick="abrirPagina('agenda')">
+            📅 Ver Agenda
+        </button>
+    </div>
+
+    <!-- RESUMO -->
+    <div class="provas-resumo">
+
+        <div class="prova-resumo-card">
+            <div class="prova-resumo-icon">📚</div>
+            <div>
+                <strong>5</strong>
+                <span>Próximas provas</span>
+            </div>
+        </div>
+
+        <div class="prova-resumo-card">
+            <div class="prova-resumo-icon">⏰</div>
+            <div>
+                <strong>2</strong>
+                <span>Esta semana</span>
+            </div>
+        </div>
+
+        <div class="prova-resumo-card">
+            <div class="prova-resumo-icon">📝</div>
+            <div>
+                <strong>3</strong>
+                <span>Já realizadas</span>
+            </div>
+        </div>
+
+        <div class="prova-resumo-card">
+            <div class="prova-resumo-icon">⭐</div>
+            <div>
+                <strong>8,7</strong>
+                <span>Média nas provas</span>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- PRÓXIMA PROVA -->
+    <div class="prova-destaque">
+
+        <div class="prova-destaque-data">
+            <span>OUT</span>
+            <strong>01</strong>
+        </div>
+
+        <div class="prova-destaque-info">
+            <span class="prova-tag">PRÓXIMA PROVA</span>
+            <h2>Matemática</h2>
+            <p>Equações do 1º e 2º grau</p>
+
+            <div class="prova-detalhes">
+                <span>📅 01 de outubro de 2026</span>
+                <span>⏰ 08:00</span>
+                <span>🏫 Sala 12</span>
+            </div>
+        </div>
+
+        <button
+            class="prova-destaque-btn"
+            onclick="mostrarDetalhesProva('Matemática', 'Equações do 1º e 2º grau', '01/10/2026', '08:00', 'Sala 12')">
+            Ver detalhes
+        </button>
+
+    </div>
+
+
+    <!-- FILTROS -->
+    <div class="provas-filtros">
+
+        <button class="prova-filtro ativo" onclick="filtrarProvas('todas', this)">
+            Todas
+        </button>
+
+        <button class="prova-filtro" onclick="filtrarProvas('pendente', this)">
+            Pendentes
+        </button>
+
+        <button class="prova-filtro" onclick="filtrarProvas('realizada', this)">
+            Realizadas
+        </button>
+
+    </div>
+
+
+    <!-- LISTA DE PROVAS -->
+    <div class="provas-lista">
+
+        <!-- Matemática -->
+        <div class="prova-card" data-status="pendente">
+
+            <div class="prova-card-data">
+                <span>OUT</span>
+                <strong>01</strong>
+            </div>
+
+            <div class="prova-card-conteudo">
+
+                <div class="prova-card-topo">
+                    <span class="prova-materia matematica">
+                        Matemática
+                    </span>
+
+                    <span class="prova-status pendente">
+                        Pendente
+                    </span>
+                </div>
+
+                <h3>Equações do 1º e 2º grau</h3>
+
+                <p>
+                    Equações, resolução de problemas e expressões algébricas.
+                </p>
+
+                <div class="prova-card-info">
+                    <span>📅 01/10/2026</span>
+                    <span>⏰ 08:00</span>
+                    <span>🏫 Sala 12</span>
+                </div>
+
+            </div>
+
+            <button
+                class="prova-card-btn"
+                onclick="mostrarDetalhesProva('Matemática', 'Equações do 1º e 2º grau', '01/10/2026', '08:00', 'Sala 12')">
+                Ver prova
+            </button>
+
+        </div>
+
+
+        <!-- História -->
+        <div class="prova-card" data-status="pendente">
+
+            <div class="prova-card-data">
+                <span>OUT</span>
+                <strong>03</strong>
+            </div>
+
+            <div class="prova-card-conteudo">
+
+                <div class="prova-card-topo">
+                    <span class="prova-materia historia">
+                        História
+                    </span>
+
+                    <span class="prova-status pendente">
+                        Pendente
+                    </span>
+                </div>
+
+                <h3>Brasil República</h3>
+
+                <p>
+                    Primeira República, Era Vargas e principais acontecimentos.
+                </p>
+
+                <div class="prova-card-info">
+                    <span>📅 03/10/2026</span>
+                    <span>⏰ 10:00</span>
+                    <span>🏫 Sala 08</span>
+                </div>
+
+            </div>
+
+            <button
+                class="prova-card-btn"
+                onclick="mostrarDetalhesProva('História', 'Brasil República', '03/10/2026', '10:00', 'Sala 08')">
+                Ver prova
+            </button>
+
+        </div>
+
+
+        <!-- Ciências -->
+        <div class="prova-card" data-status="pendente">
+
+            <div class="prova-card-data">
+                <span>OUT</span>
+                <strong>07</strong>
+            </div>
+
+            <div class="prova-card-conteudo">
+
+                <div class="prova-card-topo">
+                    <span class="prova-materia ciencias">
+                        Ciências
+                    </span>
+
+                    <span class="prova-status pendente">
+                        Pendente
+                    </span>
+                </div>
+
+                <h3>Sistema Respiratório</h3>
+
+                <p>
+                    Órgãos, funções e processo de respiração humana.
+                </p>
+
+                <div class="prova-card-info">
+                    <span>📅 07/10/2026</span>
+                    <span>⏰ 13:30</span>
+                    <span>🏫 Laboratório</span>
+                </div>
+
+            </div>
+
+            <button
+                class="prova-card-btn"
+                onclick="mostrarDetalhesProva('Ciências', 'Sistema Respiratório', '07/10/2026', '13:30', 'Laboratório')">
+                Ver prova
+            </button>
+
+        </div>
+
+
+        <!-- Português -->
+        <div class="prova-card" data-status="realizada">
+
+            <div class="prova-card-data realizada">
+                <span>SET</span>
+                <strong>25</strong>
+            </div>
+
+            <div class="prova-card-conteudo">
+
+                <div class="prova-card-topo">
+                    <span class="prova-materia portugues">
+                        Português
+                    </span>
+
+                    <span class="prova-status realizada">
+                        Realizada
+                    </span>
+                </div>
+
+                <h3>Interpretação de texto</h3>
+
+                <p>
+                    Interpretação, gêneros textuais e compreensão.
+                </p>
+
+                <div class="prova-card-info">
+                    <span>📅 25/09/2026</span>
+                    <span>⏰ 08:00</span>
+                    <span>🏫 Sala 05</span>
+                    <strong class="prova-nota">Nota: 9,0</strong>
+                </div>
+
+            </div>
+
+            <button
+                class="prova-card-btn secundario"
+                onclick="mostrarNotaProva('Português', '9,0')">
+                Ver resultado
+            </button>
+
+        </div>
+
+
+        <!-- Geografia -->
+        <div class="prova-card" data-status="realizada">
+
+            <div class="prova-card-data realizada">
+                <span>SET</span>
+                <strong>20</strong>
+            </div>
+
+            <div class="prova-card-conteudo">
+
+                <div class="prova-card-topo">
+                    <span class="prova-materia geografia">
+                        Geografia
+                    </span>
+
+                    <span class="prova-status realizada">
+                        Realizada
+                    </span>
+                </div>
+
+                <h3>Globalização</h3>
+
+                <p>
+                    Economia mundial, comércio e relações internacionais.
+                </p>
+
+                <div class="prova-card-info">
+                    <span>📅 20/09/2026</span>
+                    <span>⏰ 10:00</span>
+                    <span>🏫 Sala 09</span>
+                    <strong class="prova-nota">Nota: 8,5</strong>
+                </div>
+
+            </div>
+
+            <button
+                class="prova-card-btn secundario"
+                onclick="mostrarNotaProva('Geografia', '8,5')">
+                Ver resultado
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+        <!-- =====================================================
+     TELA DE AGENDA ESCOLAR
+===================================================== -->
+
+<section id="agenda" class="page">
+
+    <div class="page-header">
+
+        <div>
+            <h1>Agenda Escolar</h1>
+
+            <p>
+                Acompanhe suas atividades, provas e compromissos.
+            </p>
+        </div>
+
+        <button
+            class="agenda-today-btn"
+            id="agendaHoje"
+        >
+            Hoje
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         CALENDÁRIO + EVENTOS
+    ================================================== -->
+
+    <div class="agenda-layout">
+
+
+        <!-- CALENDÁRIO -->
+
+        <div class="agenda-calendar-card">
+
+            <div class="agenda-calendar-header">
+
+                <button
+                    class="agenda-month-btn"
+                    id="mesAnterior"
+                >
+                    ‹
+                </button>
+
+                <h2 id="agendaMes">
+                    Setembro 2026
+                </h2>
+
+                <button
+                    class="agenda-month-btn"
+                    id="mesProximo"
+                >
+                    ›
+                </button>
+
+            </div>
+
+
+            <!-- DIAS DA SEMANA -->
+
+            <div class="agenda-weekdays">
+
+                <span>DOM</span>
+                <span>SEG</span>
+                <span>TER</span>
+                <span>QUA</span>
+                <span>QUI</span>
+                <span>SEX</span>
+                <span>SÁB</span>
+
+            </div>
+
+
+            <!-- DIAS -->
+
+            <div
+                class="agenda-days"
+                id="agendaDays"
+            >
+
+                <button class="agenda-day other-month">
+                    30
+                </button>
+
+                <button class="agenda-day">
+                    31
+                </button>
+
+                <button class="agenda-day">
+                    1
+                </button>
+
+                <button class="agenda-day">
+                    2
+                </button>
+
+                <button class="agenda-day">
+                    3
+                </button>
+
+                <button class="agenda-day">
+                    4
+                </button>
+
+                <button class="agenda-day">
+                    5
+                </button>
+
+                <button class="agenda-day">
+                    6
+                </button>
+
+                <button class="agenda-day">
+                    7
+                </button>
+
+                <button class="agenda-day">
+                    8
+                </button>
+
+                <button class="agenda-day">
+                    9
+                </button>
+
+                <button class="agenda-day">
+                    10
+                </button>
+
+                <button class="agenda-day">
+                    11
+                </button>
+
+                <button class="agenda-day">
+                    12
+                </button>
+
+                <button class="agenda-day">
+                    13
+                </button>
+
+                <button class="agenda-day">
+                    14
+                </button>
+
+                <button class="agenda-day">
+                    15
+                </button>
+
+                <button class="agenda-day">
+                    16
+                </button>
+
+                <button class="agenda-day">
+                    17
+                </button>
+
+                <button class="agenda-day">
+                    18
+                </button>
+
+                <button class="agenda-day">
+                    19
+                </button>
+
+                <button class="agenda-day">
+                    20
+                </button>
+
+                <button class="agenda-day">
+                    21
+                </button>
+
+                <button class="agenda-day">
+                    22
+                </button>
+
+                <button class="agenda-day">
+                    23
+                </button>
+
+                <button class="agenda-day">
+                    24
+                </button>
+
+                <button class="agenda-day">
+                    25
+                </button>
+
+                <button class="agenda-day">
+                    26
+                </button>
+
+                <button class="agenda-day">
+                    27
+                </button>
+
+                <button class="agenda-day">
+                    28
+                </button>
+
+                <button class="agenda-day">
+                    29
+                </button>
+
+                <button class="agenda-day today selected">
+                    30
+                </button>
+
+                <button class="agenda-day">
+                    1
+                </button>
+
+                <button class="agenda-day">
+                    2
+                </button>
+
+                <button class="agenda-day">
+                    3
+                </button>
+
+                <button class="agenda-day">
+                    4
+                </button>
+
+                <button class="agenda-day">
+                    5
+                </button>
+
+                <button class="agenda-day">
+                    6
+                </button>
+
+                <button class="agenda-day">
+                    7
+                </button>
+
+                <button class="agenda-day">
+                    8
+                </button>
+
+                <button class="agenda-day">
+                    9
+                </button>
+
+                <button class="agenda-day">
+                    10
+                </button>
+
+                <button class="agenda-day">
+                    11
+                </button>
+
+                <button class="agenda-day">
+                    12
+                </button>
+
+                <button class="agenda-day">
+                    13
+                </button>
+
+                <button class="agenda-day">
+                    14
+                </button>
+
+                <button class="agenda-day">
+                    15
+                </button>
+
+                <button class="agenda-day">
+                    16
+                </button>
+
+                <button class="agenda-day">
+                    17
+                </button>
+
+                <button class="agenda-day">
+                    18
+                </button>
+
+                <button class="agenda-day">
+                    19
+                </button>
+
+                <button class="agenda-day">
+                    20
+                </button>
+
+                <button class="agenda-day">
+                    21
+                </button>
+
+                <button class="agenda-day">
+                    22
+                </button>
+
+                <button class="agenda-day">
+                    23
+                </button>
+
+                <button class="agenda-day">
+                    24
+                </button>
+
+                <button class="agenda-day">
+                    25
+                </button>
+
+                <button class="agenda-day">
+                    26
+                </button>
+
+                <button class="agenda-day">
+                    27
+                </button>
+
+                <button class="agenda-day">
+                    28
+                </button>
+
+                <button class="agenda-day">
+                    29
+                </button>
+
+                <button class="agenda-day">
+                    30
+                </button>
+
+                <button class="agenda-day">
+                    31
+                </button>
+
+                <button class="agenda-day other-month">
+                    1
+                </button>
+
+                <button class="agenda-day other-month">
+                    2
+                </button>
+
+                <button class="agenda-day other-month">
+                    3
+                </button>
+
+            </div>
+
+
+            <!-- LEGENDA -->
+
+            <div class="agenda-legend">
+
+                <div>
+                    <span class="legend-dot blue"></span>
+                    Atividade
+                </div>
+
+                <div>
+                    <span class="legend-dot red"></span>
+                    Prova
+                </div>
+
+                <div>
+                    <span class="legend-dot yellow"></span>
+                    Trabalho
+                </div>
+
+                <div>
+                    <span class="legend-dot green"></span>
+                    Evento
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- EVENTOS DO DIA -->
+
+        <div class="agenda-events-card">
+
+            <div class="agenda-events-header">
+
+                <div>
+
+                    <h2 id="agendaDataSelecionada">
+                        Hoje, 29 de setembro
+                    </h2>
+
+                    <p>
+                        Compromissos do dia
+                    </p>
+
+                </div>
+
+                <span class="agenda-event-count">
+                    4 eventos
+                </span>
+
+            </div>
+
+
+            <div class="agenda-events-list">
+
+
+                <!-- EVENTO 1 -->
+
+                <div class="agenda-event">
+
+                    <div class="agenda-event-time">
+                        <strong>08:00</strong>
+                        <span>09:00</span>
+                    </div>
+
+                    <div class="agenda-event-line blue"></div>
+
+                    <div class="agenda-event-content">
+
+                        <span class="agenda-event-type blue">
+                            Aula
+                        </span>
+
+                        <h3>
+                            Matemática
+                        </h3>
+
+                        <p>
+                            Sala 12 · Prof. Carlos
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EVENTO 2 -->
+
+                <div class="agenda-event">
+
+                    <div class="agenda-event-time">
+                        <strong>10:00</strong>
+                        <span>11:00</span>
+                    </div>
+
+                    <div class="agenda-event-line red"></div>
+
+                    <div class="agenda-event-content">
+
+                        <span class="agenda-event-type red">
+                            Prova
+                        </span>
+
+                        <h3>
+                            Avaliação de História
+                        </h3>
+
+                        <p>
+                            Conteúdo: Brasil República
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EVENTO 3 -->
+
+                <div class="agenda-event">
+
+                    <div class="agenda-event-time">
+                        <strong>13:30</strong>
+                        <span>14:30</span>
+                    </div>
+
+                    <div class="agenda-event-line yellow"></div>
+
+                    <div class="agenda-event-content">
+
+                        <span class="agenda-event-type yellow">
+                            Trabalho
+                        </span>
+
+                        <h3>
+                            Trabalho de Ciências
+                        </h3>
+
+                        <p>
+                            Entrega pela plataforma digital
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EVENTO 4 -->
+
+                <div class="agenda-event">
+
+                    <div class="agenda-event-time">
+                        <strong>15:00</strong>
+                        <span>16:00</span>
+                    </div>
+
+                    <div class="agenda-event-line green"></div>
+
+                    <div class="agenda-event-content">
+
+                        <span class="agenda-event-type green">
+                            Evento
+                        </span>
+
+                        <h3>
+                            Reunião do Grêmio
+                        </h3>
+
+                        <p>
+                            Auditório da escola
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         PRÓXIMOS COMPROMISSOS
+    ================================================== -->
+
+    <div class="agenda-upcoming">
+
+        <div class="agenda-section-title">
+
+            <div>
+
+                <h2>
+                    Próximos compromissos
+                </h2>
+
+                <p>
+                    Veja o que está programado para os próximos dias.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="agenda-upcoming-grid">
+
+
+            <div class="agenda-upcoming-card">
+
+                <div class="agenda-upcoming-date">
+                    <strong>01</strong>
+                    <span>OUT</span>
+                </div>
+
+                <div>
+
+                    <span class="agenda-event-type red">
+                        Prova
+                    </span>
+
+                    <h3>
+                        Prova de Matemática
+                    </h3>
+
+                    <p>
+                        08:00 · Sala 12
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="agenda-upcoming-card">
+
+                <div class="agenda-upcoming-date">
+                    <strong>03</strong>
+                    <span>OUT</span>
+                </div>
+
+                <div>
+
+                    <span class="agenda-event-type yellow">
+                        Trabalho
+                    </span>
+
+                    <h3>
+                        Projeto de Geografia
+                    </h3>
+
+                    <p>
+                        Entrega até 23:59
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="agenda-upcoming-card">
+
+                <div class="agenda-upcoming-date">
+                    <strong>07</strong>
+                    <span>OUT</span>
+                </div>
+
+                <div>
+
+                    <span class="agenda-event-type green">
+                        Evento
+                    </span>
+
+                    <h3>
+                        Feira de Ciências
+                    </h3>
+
+                    <p>
+                        09:00 · Pátio da escola
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+        <!-- =====================================================
+     TELA DE BOLETIM
+===================================================== -->
+
+<section id="boletim" class="page">
+
+    <div class="page-header">
+
+        <div>
+            <h1>Boletim</h1>
+
+            <p>
+                Consulte suas notas e acompanhe seu desempenho.
+            </p>
+        </div>
+
+
+        <select
+            id="anoBoletim"
+            class="report-select"
+        >
+
+            <option value="2026">
+                Ano letivo 2026
+            </option>
+
+            <option value="2025">
+                Ano letivo 2025
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <!-- =================================================
+         RESUMO
+    ================================================== -->
+
+    <div class="report-summary">
+
+
+        <!-- MÉDIA -->
+
+        <div class="report-card">
+
+            <div class="report-card-icon blue">
+                ★
+            </div>
+
+            <div>
+
+                <span>
+                    Média geral
+                </span>
+
+                <strong>
+                    8,7
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- APROVADAS -->
+
+        <div class="report-card">
+
+            <div class="report-card-icon green">
+                ✓
+            </div>
+
+            <div>
+
+                <span>
+                    Acima da média
+                </span>
+
+                <strong>
+                    6
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- EM ANDAMENTO -->
+
+        <div class="report-card">
+
+            <div class="report-card-icon yellow">
+                !
+            </div>
+
+            <div>
+
+                <span>
+                    Em andamento
+                </span>
+
+                <strong>
+                    2
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- TOTAL -->
+
+        <div class="report-card">
+
+            <div class="report-card-icon purple">
+                #
+            </div>
+
+            <div>
+
+                <span>
+                    Disciplinas
+                </span>
+
+                <strong>
+                    8
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         BOLETIM
+    ================================================== -->
+
+    <div class="report-main-card">
+
+        <div class="report-title">
+
+            <div>
+
+                <h2>
+                    Notas por disciplina
+                </h2>
+
+                <p>
+                    Acompanhe suas notas em cada bimestre.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="report-table-container">
+
+            <table class="report-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Disciplina
+                        </th>
+
+                        <th>
+                            1º Bim.
+                        </th>
+
+                        <th>
+                            2º Bim.
+                        </th>
+
+                        <th>
+                            3º Bim.
+                        </th>
+
+                        <th>
+                            4º Bim.
+                        </th>
+
+                        <th>
+                            Média
+                        </th>
+
+                        <th>
+                            Situação
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    <!-- MATEMÁTICA -->
+
+                    <tr>
+
+                        <td>
+
+                            <div class="report-subject">
+
+                                <span class="report-subject-icon math">
+                                    M
+                                </span>
+
+                                <strong>
+                                    Matemática
+                                </strong>
+
+                            </div>
+
+                        </td>
+
+                        <td>8,5</td>
+
+                        <td>9,0</td>
+
+                        <td>8,7</td>
+
+                        <td>9,2</td>
+
+                        <td>
+                            <strong>8,9</strong>
+                        </td>
+
+                        <td>
+
+                            <span class="report-status approved">
+                                Acima da média
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- PORTUGUÊS -->
+
+                    <tr>
+
+                        <td>
+
+                            <div class="report-subject">
+
+                                <span class="report-subject-icon portuguese">
+                                    P
+                                </span>
+
+                                <strong>
+                                    Português
+                                </strong>
+
+                            </div>
+
+                        </td>
+
+                        <td>9,0</td>
+
+                        <td>8,5</td>
+
+                        <td>9,2</td>
+
+                        <td>8,8</td>
+
+                        <td>
+                            <strong>8,9</strong>
+                        </td>
+
+                        <td>
+
+                            <span class="report-status approved">
+                                Acima da média
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- HISTÓRIA -->
+
+                    <tr>
+
+                        <td>
+
+                            <div class="report-subject">
+
+                                <span class="report-subject-icon history">
+                                    H
+                                </span>
+
+                                <strong>
+                                    História
+                                </strong>
+
+                            </div>
+
+                        </td>
+
+                        <td>7,5</td>
+
+                        <td>8,0</td>
+
+                        <td>7,8</td>
+
+                        <td>8,2</td>
+
+                        <td>
+                            <strong>7,9</strong>
+                        </td>
+
+                        <td>
+
+                            <span class="report-status approved">
+                                Acima da média
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- GEOGRAFIA -->
+
+                    <tr>
+
+                        <td>
+
+                            <div class="report-subject">
+
+                                <span class="report-subject-icon geography">
+                                    G
+                                </span>
+
+                                <strong>
+                                    Geografia
+                                </strong>
+
+                            </div>
+
+                        </td>
+
+                        <td>8,0</td>
+
+                        <td>7,5</td>
+
+                        <td>8,5</td>
+
+                        <td>8,0</td>
+
+                        <td>
+                            <strong>8,0</strong>
+                        </td>
+
+                        <td>
+
+                            <span class="report-status approved">
+                                Acima da média
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- CIÊNCIAS -->
+
+                    <tr>
+
+                        <td>
+
+                            <div class="report-subject">
+
+                                <span class="report-subject-icon science">
+                                    C
+                                </span>
+
+                                <strong>
+                                    Ciências
+                                </strong>
+
+                            </div>
+
+                        </td>
+
+                        <td>9,0</td>
+
+                        <td>8,5</td>
+
+                        <td>9,0</td>
+
+                        <td>9,5</td>
+
+                        <td>
+                            <strong>9,0</strong>
+                        </td>
+
+                        <td>
+
+                            <span class="report-status approved">
+                                Acima da média
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- INGLÊS -->
+
+                    <tr>
+
+                        <td>
+
+                            <div class="report-subject">
+
+                                <span class="report-subject-icon english">
+                                    I
+                                </span>
+
+                                <strong>
+                                    Inglês
+                                </strong>
+
+                            </div>
+
+                        </td>
+
+                        <td>8,5</td>
+
+                        <td>8,0</td>
+
+                        <td>8,8</td>
+
+                        <td>9,0</td>
+
+                        <td>
+                            <strong>8,6</strong>
+                        </td>
+
+                        <td>
+
+                            <span class="report-status approved">
+                                Acima da média
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- FÍSICA -->
+
+                    <tr>
+
+                        <td>
+
+                            <div class="report-subject">
+
+                                <span class="report-subject-icon physics">
+                                    F
+                                </span>
+
+                                <strong>
+                                    Física
+                                </strong>
+
+                            </div>
+
+                        </td>
+
+                        <td>6,5</td>
+
+                        <td>7,0</td>
+
+                        <td>7,2</td>
+
+                        <td>7,5</td>
+
+                        <td>
+                            <strong>7,1</strong>
+                        </td>
+
+                        <td>
+
+                            <span class="report-status attention">
+                                Em andamento
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- QUÍMICA -->
+
+                    <tr>
+
+                        <td>
+
+                            <div class="report-subject">
+
+                                <span class="report-subject-icon chemistry">
+                                    Q
+                                </span>
+
+                                <strong>
+                                    Química
+                                </strong>
+
+                            </div>
+
+                        </td>
+
+                        <td>6,0</td>
+
+                        <td>6,5</td>
+
+                        <td>7,0</td>
+
+                        <td>7,2</td>
+
+                        <td>
+                            <strong>6,7</strong>
+                        </td>
+
+                        <td>
+
+                            <span class="report-status attention">
+                                Em andamento
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         LEGENDA
+    ================================================== -->
+
+    <div class="report-info">
+
+        <div class="report-info-icon">
+            i
+        </div>
+
+        <div>
+
+            <strong>
+                Como funciona?
+            </strong>
+
+            <p>
+                A média mínima para aprovação é
+                <strong>6,0</strong>.
+                As notas podem ser atualizadas
+                conforme novas avaliações forem
+                lançadas.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         DESEMPENHO
+    ================================================== -->
+
+    <div class="report-performance">
+
+        <div class="report-title">
+
+            <div>
+
+                <h2>
+                    Resumo do desempenho
+                </h2>
+
+                <p>
+                    Veja a evolução da sua média durante o ano.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="performance-bars">
+
+
+            <div class="performance-item">
+
+                <div class="performance-label">
+                    <span>1º Bimestre</span>
+                    <strong>8,1</strong>
+                </div>
+
+                <div class="performance-bar">
+
+                    <div
+                        class="performance-fill"
+                        style="width: 81%;"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="performance-item">
+
+                <div class="performance-label">
+                    <span>2º Bimestre</span>
+                    <strong>8,0</strong>
+                </div>
+
+                <div class="performance-bar">
+
+                    <div
+                        class="performance-fill"
+                        style="width: 80%;"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="performance-item">
+
+                <div class="performance-label">
+                    <span>3º Bimestre</span>
+                    <strong>8,6</strong>
+                </div>
+
+                <div class="performance-bar">
+
+                    <div
+                        class="performance-fill"
+                        style="width: 86%;"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="performance-item">
+
+                <div class="performance-label">
+                    <span>4º Bimestre</span>
+                    <strong>8,7</strong>
+                </div>
+
+                <div class="performance-bar">
+
+                    <div
+                        class="performance-fill"
+                        style="width: 87%;"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+        <!-- =====================================================
+     TELA DE FREQUÊNCIA
+===================================================== -->
+
+<section id="frequencia" class="page">
+
+    <div class="page-header">
+        <div>
+            <h1>Frequência</h1>
+            <p>Acompanhe sua presença nas aulas.</p>
+        </div>
+
+        <select id="periodoFrequencia" class="frequency-select">
+            <option value="2026">2026</option>
+            <option value="2025">2025</option>
+        </select>
+    </div>
+
+
+    <!-- RESUMO -->
+
+    <div class="frequency-summary">
+
+        <div class="frequency-card">
+
+            <div class="frequency-icon green">
+                ✓
+            </div>
+
+            <div>
+                <span>Presenças</span>
+                <strong id="totalPresencas">87</strong>
+            </div>
+
+        </div>
+
+
+        <div class="frequency-card">
+
+            <div class="frequency-icon red">
+                !
+            </div>
+
+            <div>
+                <span>Faltas</span>
+                <strong id="totalFaltas">13</strong>
+            </div>
+
+        </div>
+
+
+        <div class="frequency-card">
+
+            <div class="frequency-icon blue">
+                #
+            </div>
+
+            <div>
+                <span>Aulas previstas</span>
+                <strong id="totalAulas">100</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FREQUÊNCIA GERAL -->
+
+    <div class="frequency-main-card">
+
+        <div class="frequency-main-header">
+
+            <div>
+                <h2>Frequência geral</h2>
+                <p>Seu aproveitamento de presença em 2026.</p>
+            </div>
+
+        </div>
+
+
+        <div class="frequency-progress-area">
+
+            <div
+                class="frequency-circle"
+                id="frequencyCircle"
+            >
+
+                <div class="frequency-circle-content">
+
+                    <strong id="frequencyPercentage">
+                        87%
+                    </strong>
+
+                    <span>
+                        Frequência
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="frequency-info">
+
+                <div class="frequency-info-item">
+                    <span class="frequency-dot green"></span>
+
+                    <div>
+                        <strong>87%</strong>
+                        <small>Presença</small>
+                    </div>
+                </div>
+
+
+                <div class="frequency-info-item">
+                    <span class="frequency-dot red"></span>
+
+                    <div>
+                        <strong>13%</strong>
+                        <small>Faltas</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FREQUÊNCIA POR MATÉRIA -->
+
+    <div class="frequency-subject-card">
+
+        <div class="frequency-section-title">
+
+            <div>
+                <h2>Frequência por matéria</h2>
+
+                <p>
+                    Consulte sua presença em cada disciplina.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="subject-frequency-list">
+
+
+            <!-- MATEMÁTICA -->
+
+            <div class="subject-frequency">
+
+                <div class="subject-frequency-info">
+
+                    <div class="subject-color math">
+                        M
+                    </div>
+
+                    <div>
+                        <strong>Matemática</strong>
+                        <span>24 aulas</span>
+                    </div>
+
+                </div>
+
+
+                <div class="subject-frequency-bar">
+
+                    <div
+                        class="subject-frequency-fill"
+                        style="width: 92%;"
+                    ></div>
+
+                </div>
+
+
+                <strong class="subject-frequency-percent">
+                    92%
+                </strong>
+
+            </div>
+
+
+            <!-- PORTUGUÊS -->
+
+            <div class="subject-frequency">
+
+                <div class="subject-frequency-info">
+
+                    <div class="subject-color portuguese">
+                        P
+                    </div>
+
+                    <div>
+                        <strong>Português</strong>
+                        <span>22 aulas</span>
+                    </div>
+
+                </div>
+
+
+                <div class="subject-frequency-bar">
+
+                    <div
+                        class="subject-frequency-fill"
+                        style="width: 95%;"
+                    ></div>
+
+                </div>
+
+
+                <strong class="subject-frequency-percent">
+                    95%
+                </strong>
+
+            </div>
+
+
+            <!-- HISTÓRIA -->
+
+            <div class="subject-frequency">
+
+                <div class="subject-frequency-info">
+
+                    <div class="subject-color history">
+                        H
+                    </div>
+
+                    <div>
+                        <strong>História</strong>
+                        <span>18 aulas</span>
+                    </div>
+
+                </div>
+
+
+                <div class="subject-frequency-bar">
+
+                    <div
+                        class="subject-frequency-fill"
+                        style="width: 83%;"
+                    ></div>
+
+                </div>
+
+
+                <strong class="subject-frequency-percent">
+                    83%
+                </strong>
+
+            </div>
+
+
+            <!-- CIÊNCIAS -->
+
+            <div class="subject-frequency">
+
+                <div class="subject-frequency-info">
+
+                    <div class="subject-color science">
+                        C
+                    </div>
+
+                    <div>
+                        <strong>Ciências</strong>
+                        <span>20 aulas</span>
+                    </div>
+
+                </div>
+
+
+                <div class="subject-frequency-bar">
+
+                    <div
+                        class="subject-frequency-fill"
+                        style="width: 90%;"
+                    ></div>
+
+                </div>
+
+
+                <strong class="subject-frequency-percent">
+                    90%
+                </strong>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- REGISTRO DE AULAS -->
+
+    <div class="frequency-history">
+
+        <div class="frequency-section-title">
+
+            <div>
+                <h2>Registro de aulas</h2>
+
+                <p>
+                    Histórico recente de presença.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="frequency-table-container">
+
+            <table class="frequency-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Data</th>
+                        <th>Matéria</th>
+                        <th>Horário</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+                        <td>29/09/2026</td>
+                        <td>Matemática</td>
+                        <td>08:00</td>
+                        <td>
+                            <span class="attendance present">
+                                Presente
+                            </span>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>28/09/2026</td>
+                        <td>Português</td>
+                        <td>09:00</td>
+                        <td>
+                            <span class="attendance present">
+                                Presente
+                            </span>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>27/09/2026</td>
+                        <td>História</td>
+                        <td>10:00</td>
+                        <td>
+                            <span class="attendance absent">
+                                Falta
+                            </span>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>26/09/2026</td>
+                        <td>Ciências</td>
+                        <td>08:00</td>
+                        <td>
+                            <span class="attendance present">
+                                Presente
+                            </span>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>25/09/2026</td>
+                        <td>Matemática</td>
+                        <td>08:00</td>
+                        <td>
+                            <span class="attendance present">
+                                Presente
+                            </span>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+        <!-- TOPO -->
+        <header class="topbar">
+
+            <button class="menu-mobile" id="menuMobile">
+                ☰
+            </button>
+
+            <div class="search">
+                🔎
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="O que você quer estudar?"
+                >
+            </div>
+
+            <button class="notification">
+                🔔
+            </button>
+
+        </header>
+
+
+        <!-- ================= INÍCIO ================= -->
+
+        <section id="inicio" class="page active">
+
+            <div class="welcome">
+
+                <div>
+                    <span class="subtitle">
+                        PAINEL DO ALUNO
+                    </span>
+
+                    <h1>
+                        Olá, Higor! 👋
+                    </h1>
+
+                    <p>
+                        Vamos continuar seus estudos hoje?
+                    </p>
+                </div>
+
+                <button
+                    class="primary"
+                    onclick="abrirPagina('atividades')"
+                >
+                    Começar atividade →
+                </button>
+
+            </div>
+
+
+            <!-- MATÉRIAS -->
+
+            <div class="subjects">
+
+                <div class="subject math">
+                    <div class="subject-icon">
+                        ∑
+                    </div>
+
+                    <div>
+                        <strong>Matemática</strong>
+                        <small>12 atividades</small>
+                    </div>
+                </div>
+
+
+                <div class="subject portuguese">
+                    <div class="subject-icon">
+                        A
+                    </div>
+
+                    <div>
+                        <strong>Português</strong>
+                        <small>8 atividades</small>
+                    </div>
+                </div>
+
+
+                <div class="subject science">
+                    <div class="subject-icon">
+                        ⚗
+                    </div>
+
+                    <div>
+                        <strong>Ciências</strong>
+                        <small>10 atividades</small>
+                    </div>
+                </div>
+
+
+                <div class="subject geography">
+                    <div class="subject-icon">
+                        🌎
+                    </div>
+
+                    <div>
+                        <strong>Geografia</strong>
+                        <small>6 atividades</small>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- PAINÉIS -->
+
+            <div class="dashboard">
+
+                <div class="panel">
+
+                    <div class="panel-title">
+
+                        <div>
+                            <h2>Atividades pendentes</h2>
+                            <small>
+                                Continue de onde parou
+                            </small>
+                        </div>
+
+                        <button
+                            onclick="abrirPagina('atividades')"
+                        >
+                            Ver todas
+                        </button>
+
+                    </div>
+
+
+                    <div class="activity">
+
+                        <div class="activity-icon">
+                            ∑
+                        </div>
+
+                        <div class="activity-info">
+                            <strong>
+                                Revisão de matemática
+                            </strong>
+
+                            <small>
+                                Matemática • 10 questões
+                            </small>
+                        </div>
+
+                        <span class="pending">
+                            Pendente
+                        </span>
+
+                        <button
+                            class="start"
+                            onclick="iniciarQuiz('Matemática')"
+                        >
+                            Começar
+                        </button>
+
+                    </div>
+
+
+                    <div class="activity">
+
+                        <div class="activity-icon pink">
+                            A
+                        </div>
+
+                        <div class="activity-info">
+                            <strong>
+                                Interpretação de texto
+                            </strong>
+
+                            <small>
+                                Português • 8 questões
+                            </small>
+                        </div>
+
+                        <span class="pending">
+                            Pendente
+                        </span>
+
+                        <button
+                            class="start"
+                            onclick="iniciarQuiz('Português')"
+                        >
+                            Começar
+                        </button>
+
+                    </div>
+
+
+                    <div class="activity">
+
+                        <div class="activity-icon green">
+                            ⚗
+                        </div>
+
+                        <div class="activity-info">
+                            <strong>
+                                Ciências da natureza
+                            </strong>
+
+                            <small>
+                                Ciências • 6 questões
+                            </small>
+                        </div>
+
+                        <span class="new">
+                            Nova
+                        </span>
+
+                        <button
+                            class="start"
+                            onclick="iniciarQuiz('Ciências')"
+                        >
+                            Começar
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROGRESSO -->
+
+                <div class="panel progress-panel">
+
+                    <h2>Meu progresso</h2>
+
+                    <small>
+                        Últimos 30 dias
+                    </small>
+
+                    <div class="progress-circle">
+
+                        <div>
+                            <strong>75%</strong>
+                            <span>concluído</span>
+                        </div>
+
+                    </div>
+
+                    <div class="stats">
+
+                        <div>
+                            <strong>24</strong>
+                            <small>Atividades</small>
+                        </div>
+
+                        <div>
+                            <strong>8.4</strong>
+                            <small>Média</small>
+                        </div>
+
+                        <div>
+                            <strong>12h</strong>
+                            <small>Estudadas</small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ATIVIDADES ================= -->
+
+        <section id="atividades" class="page">
+
+            <div class="page-header">
+
+                <div>
+                    <span class="subtitle">
+                        ESTUDOS
+                    </span>
+
+                    <h1>Atividades</h1>
+
+                    <p>
+                        Escolha uma atividade para continuar.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="filters">
+
+                <button class="filter active">
+                    Todas
+                </button>
+
+                <button class="filter">
+                    Matemática
+                </button>
+
+                <button class="filter">
+                    Português
+                </button>
+
+                <button class="filter">
+                    Ciências
+                </button>
+
+                <button class="filter">
+                    Concluídas
+                </button>
+
+            </div>
+
+
+            <div class="activity-grid">
+
+                <!-- ATIVIDADE DE REDAÇÃO -->
+
+<div class="activity-card">
+
+    <span class="label pink-label">
+        REDAÇÃO
+    </span>
+
+    <h3>
+        Produção de Redação
+    </h3>
+
+    <p>
+        Aprenda a organizar uma redação
+        com introdução, desenvolvimento
+        e conclusão.
+    </p>
+
+    <div class="card-bottom">
+
+        <small>
+            ⏱ 1 hora
+        </small>
+
+        <button
+            class="start"
+            onclick="abrirPagina('redacao')"
+        >
+            Começar
+        </button>
+
+    </div>
+
+</div>
+
+                <div class="activity-card">
+
+                    <span class="label blue">
+                        MATEMÁTICA
+                    </span>
+
+                    <h3>
+                        Revisão de matemática
+                    </h3>
+
+                    <p>
+                        Área, perímetro e operações básicas.
+                    </p>
+
+                    <div class="card-bottom">
+                        <small>⏱ 15 min</small>
+
+                        <button
+                            class="start"
+                            onclick="iniciarQuiz('Matemática')"
+                        >
+                            Começar
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <div class="activity-card">
+
+                    <span class="label pink-label">
+                        PORTUGUÊS
+                    </span>
+
+                    <h3>
+                        Interpretação de texto
+                    </h3>
+
+                    <p>
+                        Leia e responda questões.
+                    </p>
+
+                    <div class="card-bottom">
+                        <small>⏱ 12 min</small>
+
+                        <button
+                            class="start"
+                            onclick="iniciarQuiz('Português')"
+                        >
+                            Começar
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <div class="activity-card">
+
+                    <span class="label green-label">
+                        CIÊNCIAS
+                    </span>
+
+                    <h3>
+                        Ciências da natureza
+                    </h3>
+
+                    <p>
+                        Conceitos fundamentais.
+                    </p>
+
+                    <div class="card-bottom">
+                        <small>⏱ 10 min</small>
+
+                        <button
+                            class="start"
+                            onclick="iniciarQuiz('Ciências')"
+                        >
+                            Começar
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <div class="activity-card">
+
+                    <span class="label orange-label">
+                        GEOGRAFIA
+                    </span>
+
+                    <h3>
+                        Brasil e suas regiões
+                    </h3>
+
+                    <p>
+                        Teste seus conhecimentos.
+                    </p>
+
+                    <div class="card-bottom">
+                        <small>⏱ 12 min</small>
+
+                        <button
+                            class="start"
+                            onclick="iniciarQuiz('Geografia')"
+                        >
+                            Começar
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+<!-- ================= REDAÇÃO ================= -->
+
+<section id="redacao" class="page">
+
+    <div class="redacao-container">
+
+        <!-- VOLTAR -->
+
+        <button
+            class="back"
+            onclick="abrirPagina('atividades')"
+        >
+            ← Voltar para atividades
+        </button>
+
+
+        <!-- CABEÇALHO -->
+
+        <div class="page-header">
+
+            <span class="subtitle">
+                PORTUGUÊS
+            </span>
+
+            <h1>
+                ✍️ Produção de Redação
+            </h1>
+
+            <p>
+                Coloque suas ideias no papel e pratique
+                sua escrita.
+            </p>
+
+        </div>
+
+
+        <!-- CARD -->
+
+        <div class="redacao-card">
+
+            <span class="subtitle">
+                TEMA DA REDAÇÃO
+            </span>
+
+
+            <h2>
+                A importância da tecnologia na educação
+            </h2>
+
+
+            <p>
+                A tecnologia está cada vez mais presente
+                na educação e no cotidiano dos estudantes.
+                Escreva uma redação discutindo como os
+                recursos tecnológicos podem contribuir
+                para a aprendizagem.
+            </p>
+
+
+            <!-- TEMA -->
+
+            <div class="redacao-tema">
+
+                <strong>
+                    📌 Tema
+                </strong>
+
+                <p>
+                    A importância da tecnologia na educação.
+                </p>
+
+            </div>
+
+
+            <!-- DICAS -->
+
+            <div class="redacao-dicas">
+
+                <h3>
+                    💡 Como organizar sua redação
+                </h3>
+
+                <p>
+
+                    <strong>Introdução:</strong>
+                    apresente o tema e a ideia principal.
+
+                    <br><br>
+
+                    <strong>Desenvolvimento:</strong>
+                    apresente seus argumentos e exemplos.
+
+                    <br><br>
+
+                    <strong>Conclusão:</strong>
+                    retome a ideia principal e finalize
+                    seu texto.
+
+                </p>
+
+            </div>
+
+
+            <!-- ÁREA DE TEXTO -->
+
+            <label
+                for="redacaoTexto"
+                style="
+                    display: block;
+                    font-size: 12px;
+                    font-weight: bold;
+                    margin-bottom: 8px;
+                "
+            >
+
+                📝 Escreva sua redação:
+
+            </label>
+
+
+            <textarea
+                id="redacaoTexto"
+                placeholder="Comece a escrever sua redação aqui..."
+            ></textarea>
+
+
+            <!-- CONTADORES -->
+
+            <div class="redacao-contadores">
+
+                <span id="contadorRedacao">
+                    0 caracteres
+                </span>
+
+                <span id="contadorPalavras">
+                    0 palavras
+                </span>
+
+            </div>
+
+
+            <!-- BOTÕES -->
+
+            <div class="redacao-botoes">
+
+                <button
+                    class="secondary"
+                    onclick="abrirPagina('atividades')"
+                >
+                    Cancelar
+                </button>
+
+
+                <button
+                    class="primary"
+                    onclick="enviarRedacao()"
+                >
+                    Enviar redação →
+                </button>
+
+            </div>
+
+
+            <!-- MENSAGEM -->
+
+            <div
+                id="redacaoSucesso"
+                class="redacao-sucesso"
+            >
+                ✅ Sua redação foi enviada com sucesso!
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+        <!-- ================= QUIZ ================= -->
+
+        <section id="quiz" class="page">
+
+            <div class="quiz">
+
+                <button
+                    class="back"
+                    onclick="abrirPagina('atividades')"
+                >
+                    ← Voltar
+                </button>
+
+                <div class="quiz-header">
+
+                    <span id="quizSubject">
+                        MATEMÁTICA
+                    </span>
+
+                    <span id="questionCounter">
+                        Questão 1 de 5
+                    </span>
+
+                </div>
+
+
+                <div class="quiz-progress">
+                    <div id="quizBar"></div>
+                </div>
+
+
+                <div class="question-card">
+
+                    <span class="subtitle">
+                        QUESTÃO
+                        <span id="questionNumber">
+                            01
+                        </span>
+                    </span>
+
+                    <h2 id="questionText">
+                        Qual é a área de um retângulo
+                        com 8 cm de comprimento
+                        e 4 cm de largura?
+                    </h2>
+
+
+                    <div id="answers"></div>
+
+
+                    <div class="quiz-buttons">
+
+                        <button
+                            class="secondary"
+                            id="previous"
+                        >
+                            Anterior
+                        </button>
+
+                        <button
+                            class="primary"
+                            id="next"
+                        >
+                            Próxima →
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= RESULTADO ================= -->
+
+        <section id="resultado" class="page">
+
+            <div class="result">
+
+                <div class="trophy">
+                    🏆
+                </div>
+
+                <span class="subtitle">
+                    ATIVIDADE CONCLUÍDA!
+                </span>
+
+                <h1>
+                    Parabéns!
+                </h1>
+
+                <p>
+                    Você terminou a atividade de
+                    <strong id="resultSubject">
+                        Matemática
+                    </strong>.
+                </p>
+
+
+                <div class="score">
+
+                    <strong id="score">
+                        4/5
+                    </strong>
+
+                    <span>
+                        questões corretas
+                    </span>
+
+                </div>
+
+
+                <div class="result-stats">
+
+                    <div>
+                        <strong id="correct">
+                            4
+                        </strong>
+
+                        <small>
+                            Acertos
+                        </small>
+                    </div>
+
+                    <div>
+                        <strong id="wrong">
+                            1
+                        </strong>
+
+                        <small>
+                            Erros
+                        </small>
+                    </div>
+
+                    <div>
+                        <strong id="percentage">
+                            80%
+                        </strong>
+
+                        <small>
+                            Aproveitamento
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="result-buttons">
+
+                    <button
+                        class="secondary"
+                        onclick="abrirPagina('atividades')"
+                    >
+                        Ver atividades
+                    </button>
+
+                    <button
+                        class="primary"
+                        onclick="iniciarQuiz(currentSubject)"
+                    >
+                        Refazer atividade
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- OUTRAS PÁGINAS -->
+
+        <section id="materias" class="page simple">
+            <h1>Minhas matérias</h1>
+            <p>Veja todas as matérias disponíveis.</p>
+        </section>
+
+
+        <section id="cronograma" class="page simple">
+            <h1>Cronograma</h1>
+            <p>Organize sua rotina de estudos.</p>
+        </section>
+
+
+        <section id="desempenho" class="page simple">
+            <h1>Desempenho</h1>
+            <p>Acompanhe sua evolução.</p>
+        </section>
+
+
+        <section id="configuracoes" class="page simple">
+            <h1>Configurações</h1>
+            <p>Personalize sua conta.</p>
+        </section>
+
+        <!-- ================= PROVAS ================= -->
+
+<section id="provas" class="page simple">
+
+    <h1>Provas</h1>
+
+    <p>
+        Consulte suas provas e avaliações.
+    </p>
+
+</section>
+
+
+<!-- ================= MATERIAL DIGITAL ================= -->
+
+<section id="material-digital" class="page simple">
+
+    <h1>Material Digital</h1>
+
+    <p>
+        Acesse seus materiais digitais de estudo.
+    </p>
+
+</section>
+
+
+<!-- ================= PLATAFORMAS ================= -->
+
+<section id="plataformas" class="page simple">
+
+    <h1>Plataformas</h1>
+
+    <p>
+        Acesse as plataformas educacionais disponíveis.
+    </p>
+
+</section>
+
+
+<!-- ================= FREQUÊNCIA ================= -->
+
+<section id="frequencia" class="page simple">
+
+    <h1>Frequência</h1>
+
+    <p>
+        Consulte sua frequência escolar.
+    </p>
+
+</section>
+
+
+<!-- ================= BOLETIM ================= -->
+
+<section id="boletim" class="page simple">
+
+    <h1>Boletim</h1>
+
+    <p>
+        Consulte suas notas e resultados.
+    </p>
+
+</section>
+
+
+<!-- ================= AGENDA ================= -->
+
+<section id="agenda" class="page simple">
+
+    <h1>Agenda</h1>
+
+    <p>
+        Confira seus compromissos e atividades.
+    </p>
+
+</section>
+
+
+<!-- ================= MENSAGENS ================= -->
+
+<section id="mensagens" class="page simple">
+
+    <h1>Mensagens</h1>
+
+    <p>
+        Consulte suas mensagens.
+    </p>
+
+</section>
+
+
+<!-- ================= PESQUISAS ================= -->
+
+<section id="pesquisas" class="page simple">
+
+    <h1>Pesquisas</h1>
+
+    <p>
+        Participe das pesquisas disponíveis.
+    </p>
+
+</section>
+
+
+<!-- ================= MEUS MÉRITOS ================= -->
+
+<section id="meus-meritos" class="page simple">
+
+    <h1>Meus Méritos</h1>
+
+    <p>
+        Veja suas conquistas e méritos.
+    </p>
+
+</section>
+
+
+<!-- ================= PERFIL ================= -->
+
+<section id="perfil" class="page simple">
+
+    <h1>Perfil</h1>
+
+    <p>
+        Consulte e edite seus dados de perfil.
+    </p>
+
+</section>
+
+    </main>
+
+
+    <!-- MENU MOBILE -->
+
+    <nav class="mobile-nav">
+
+        <button
+            class="active"
+            data-page="inicio"
+        >
+            🏠
+            <span>Início</span>
+        </button>
+
+        <button
+            data-page="atividades"
+        >
+            📚
+            <span>Atividades</span>
+        </button>
+
+        <button
+            data-page="materias"
+        >
+            📖
+            <span>Matérias</span>
+        </button>
+
+        <button
+            data-page="desempenho"
+        >
+            📊
+            <span>Desempenho</span>
+        </button>
+
+    </nav>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
